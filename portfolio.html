@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>André Aigner – Portfolio</title>
+    <link href="https://fonts.bunny.net/css?family=inter:400,500,700|abel:400" rel="stylesheet"/>
+    <style>
+        :root {
+            --bg-color: #f9f8f4;
+            --text-color: #111;
+            --accent-color: #2ecc71;
+            --font-main: 'Inter', sans-serif;
+            --carousel-item-width: 280px;
+            --carousel-item-gap: 2rem;
+            --carousel-duration: 30s;
+            --clr-cta: #2ecc71;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-main);
+            line-height: 1.8;
+            overflow-x: hidden;
+            padding: 1rem;
+            display: grid;
+            place-items: center;
+        }
+
+        header {
+            background-color: white;
+            padding: 2rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ccc;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+        }
+
+        main {
+            max-width: 1200px;
+            width: 100%;
+            margin: 3rem auto;
+        }
+
+        .project {
+            max-width: 100%;
+            overflow: hidden;
+            margin-bottom: 4rem;
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .project h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .carousel {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            margin-top: 1rem;
+        }
+
+        .carousel-x {
+            display: flex;
+            gap: var(--carousel-item-gap);
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding-bottom: 1rem;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .carousel-x article {
+            flex: 0 0 auto;
+            scroll-snap-align: start;
+            width: clamp(220px, 80vw, var(--carousel-item-width));
+            border-radius: 10px;
+            background: white;
+            color: var(--text-color);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .carousel-x img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .carousel-x .carousel-content {
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .carousel-track {
+            will-change: transform;
+            display: flex;
+            gap: var(--carousel-item-gap);
+            animation: scroll-track var(--carousel-duration) linear infinite;
+            width: max-content;
+        }
+
+        .carousel article {
+            flex: 0 0 auto;
+            width: var(--carousel-item-width);
+            border-radius: 10px;
+            background: white;
+            color: var(--text-color);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .carousel img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .carousel-content {
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .carousel h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .carousel p {
+            font-size: 0.9rem;
+            color: #444;
+            margin: 0;
+        }
+
+        .carousel a {
+            align-self: flex-start;
+            text-decoration: none;
+            color: var(--clr-cta);
+            border: 1px solid var(--clr-cta);
+            border-radius: 4px;
+            padding: 0.25rem 0.5rem;
+            font-size: 0.85rem;
+            transition: 0.2s ease-in-out;
+        }
+
+        .carousel a:hover {
+            background: var(--clr-cta);
+            color: white;
+        }
+
+        @keyframes scroll-track {
+            0% {
+                transform: translateX(0%);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .tech-stack, .status {
+            margin-top: 1rem;
+        }
+
+        .tech-stack ul {
+            list-style: disc;
+            margin-left: 1.5rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #999;
+        }
+
+        dialog#imgModal {
+            padding: 0;
+            border: none;
+            background: transparent;
+            border-radius: 12px;
+            animation: fadeIn 0.2s ease-out;
+        }
+
+        dialog#imgModal::backdrop {
+            background-color: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(8px);
+        }
+
+        dialog#imgModal:focus {
+            outline: none;
+            box-shadow: none;
+        }
+
+        #modalImg {
+            max-width: 90vw;
+            max-height: 90vh;
+            border-radius: 12px;
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .read-more-container {
+            margin-top: 1rem;
+        }
+
+        .read-more-toggle {
+            color: var(--accent-color, #2ecc71);
+            cursor: pointer;
+            font-weight: 500;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+            user-select: none;
+        }
+
+        .read-more-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .read-more-content.open {
+            max-height: 500px; /* Adjust based on expected content size */
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">André Aigner</div>
+    <nav>
+        <ul>
+            <li><a href="#bets">bets</a></li>
+            <li><a href="#mystrings">mystrings</a></li>
+            <li><a href="#techbuddy">techbuddy</a></li>
+            <li><a href="#photoshare">photo sharing</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <div class="project" id="bets">
+        <h2>bets</h2>
+        <p class="description">A social betting iOS app for private groups with Firebase and SwiftUI, deep linking, and real-time notifications.</p>
+        <div class="carousel">
+            <div class="carousel-track">
+                <article>
+                    <img src="/images/portfolio/bets-sample-content.png" alt="">
+                    <div class="carousel-content">
+                        <h3>Group View</h3>
+                        <p>See what´s going on in your group.</p>
+                    </div>
+                </article>
+                <article>
+                    <img src="/images/portfolio/bets-betdetail.png" alt="">
+                    <div class="carousel-content">
+                        <h3>Bet Detail</h3>
+                        <p>Track your bets with clarity and speed.</p>
+                    </div>
+                </article>
+                <article>
+                    <img src="/images/portfolio/bets-psv.png" alt="">
+                    <div class="carousel-content">
+                        <h3>Groups</h3>
+                        <p>Join groups and bet with your friends.</p>
+                    </div>
+                </article>
+                <article>
+                    <img src="/images/portfolio/bets-join-group.png" alt="">
+                    <div class="carousel-content">
+                        <h3>Join Group</h3>
+                        <p>Invite friends and start betting in minutes.</p>
+                    </div>
+                </article>
+                <article>
+                    <img src="/images/portfolio/bets-myprofile.png" alt="">
+                    <div class="carousel-content">
+                        <h3>My Profile</h3>
+                        <p>See your stats and manage your activity.</p>
+                    </div>
+                </article>
+                <!-- Duplicates for looping animation -->
+                <article>
+                    <img src="/images/portfolio/bets-sample-content.png" alt="">
+                    <div class="carousel-content">
+                        <h3>Group View</h3>
+                        <p>See what´s going on in your group.</p>
+                    </div>
+                </article>
+                <article>
+                    <img src="/images/portfolio/bets-betdetail.png" alt="">
+                    <div class="carousel-content">
+                        <h3>Bet Detail</h3>
+                        <p>Track your bets with clarity and speed.</p>
+                    </div>
+                </article>
+                <article>
+                    <img src="/images/portfolio/bets-psv.png" alt="">
+                    <div class="carousel-content">
+                        <h3>Group Bets</h3>
+                        <p>Join group challenges and compete socially.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+        <h3>Description</h3>
+        <p>Bets is a social betting app that lets users create, accept, and resolve friendly bets within private groups. It integrates with Firebase for real-time data, authentication (Apple, Google), and cloud messaging. Users can track their betting history, join groups via codes or deep links, and receive notifications about bet updates or resolution requests. The app features clean navigation, a deep linking system, and automatic bet archiving for long-term history tracking. It's built with SwiftUI, leveraging modern iOS patterns and Firebase's backend services for a seamless social experience.</p>
+
+        <div class="tech-stack">
+            <strong>Tech Stack:</strong>
+            <ul>
+                <li>🌐 Frontend: SwiftUI</li>
+                <li>🛠 Backend: Firebase</li>
+                <li>🔐 Auth: Apple, Google</li>
+                <li>🧾 Database: Firestorage</li>
+                <li>☁️ Messaging: Python Flask</li>
+            </ul>
+        </div>
+        <br>
+
+        <div class="status">
+            <strong>Status:</strong> Currently in TestFlight with a small user group of about 15 persons. Planned for release in Q3 2025. The product is being prepared for legal launch in Germany under my registered business. Pending due to being in the middle of the business registration process.
+        </div>
+        <div class="read-more-container">
+            <span class="read-more-toggle" onclick="toggleReadMore(this)">Read more</span>
+            <div class="read-more-content">
+                <h3>Challenges & Solutions</h3>
+                <p>
+                    <strong>Problem:</strong> Users needed a seamless way to share and access specific bets, groups, or actions (like joining a group or starting a new bet) directly—whether the app was already running or freshly launched.
+                    <br>
+                    <strong>Solution:</strong> Implemented a custom deep linking system using a dedicated `DeepLinkManager` and URL parser. Incoming links are decoded into actionable routes and buffered if the user isn't authenticated. Once the user signs in, the app flushes any buffered links and routes them appropriately. This supports both universal links and custom schemes, enabling dynamic navigation like `/group/:id`, `/bet/:id`, or `/join/:code`.
+                    <br><br>
+                </p>
+                <p>
+                    <strong>Problem:</strong> There was no structured way for users to resolve bets, propose winners, or handle disputes after a bet was completed.
+                    <br>
+                    <strong>Solution:</strong> Designed a resolution request system using `BetMessage` models and Firestore subcollections. Users can propose a winner with a justification, which notifies the opponent and prompts them to accept or reject. Resolved bets are automatically archived after a cooldown period, keeping active views clean and historical data accessible. This workflow supports accountability and preserves bet integrity across groups.
+                    <br><br>
+                </p>
+                <p>
+                    <strong>Problem:</strong> Old bets that have already been resolved were still visible in the Group.
+                    <br>
+                    <strong>Solution:</strong> Implemented archiving of older bets into a new subcolletion, to reduce the data traffic when opening a Group.
+                </p>
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="project" id="mystrings">
+        <h2>mystrings</h2>
+        <p class="description">A tennis string tracking iOS app with AI String Scanner using AVFoundation and Google Gemini.</p>
+        <div class="carousel">
+            <div class="carousel-track">
+                <article>
+                    <img src="/images/portfolio/mystrings-search.png" alt="">
+                    <div class="carousel-content">
+                        <h3>Search</h3>
+                        <p>Quickly find strings and racquet data.</p>
+                    </div>
+                </article>
+                <article>
+                    <img src="/images/portfolio/mystrings-racquet.png" alt="">
+                    <div class="carousel-content">
+                        <h3>Racquet</h3>
+                        <p>View detailed racquet and tension profiles.</p>
+                    </div>
+                </article>
+                <article>
+                    <img src="/images/portfolio/mystrings-ai.png" alt="">
+                    <div class="carousel-content">
+                        <h3>AI Scanner</h3>
+                        <p>Scan strings using camera and AI model.</p>
+                    </div>
+                </article>
+                <!-- Duplicates for animation loop -->
+                <article>
+                    <img src="/images/portfolio/mystrings-search.png" alt="">
+                    <div class="carousel-content">
+                        <h3>Search</h3>
+                        <p>Quickly find strings and racquet data.</p>
+                    </div>
+                </article>
+                <article>
+                    <img src="/images/portfolio/mystrings-racquet.png" alt="">
+                    <div class="carousel-content">
+                        <h3>Racquet</h3>
+                        <p>View detailed racquet and tension profiles.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+
+        <h3>Description</h3>
+        <p>MyStrings is a modern iOS app designed for tennis players and stringers to effortlessly manage racquets, stringing history, and string inventory. The app features a sleek, Apple-style UI and integrates with Firebase for secure cloud-based storage. A standout feature is the AI Racquet Scanner, which uses Google Gemini to analyse photos of tennis racquets to research data about the model string pattern and release year and brand, to simplify creating new racquet entries. Built with SwiftUI and AVFoundation, MyStrings blends smart automation with elegant design to streamline racquet tracking and equipment insights.</p>
+
+        <div class="tech-stack">
+            <strong>Tech Stack:</strong>
+            <ul>
+                <li>🌐 Frontend: SwiftUI, AVFoundation</li>
+                <li>🛠 Backend: Firebase</li>
+                <li>🔐 Auth: Google</li>
+                <li>🧾 Database: Firestorage (JSON)</li>
+            </ul>
+        </div>
+        <br>
+
+        <div class="status">
+            <strong>Status:</strong> Currently in TestFlight with a small user group of 3-4 professionals working with the app. Planned for release in Q3 2025. The product is being prepared for legal launch in Germany under my registered business. Pending due to being in the middle of the business registration process.
+        </div>
+
+        <div class="read-more-container">
+            <span class="read-more-toggle" onclick="toggleReadMore(this)">Read more</span>
+            <div class="read-more-content">
+
+                <h3>Challenges & Solutions</h3>
+                <p>
+                    <strong>Problem:</strong> The AVCaptureVideoPreviewLayer wasn’t rendering correctly inside SwiftUI due to improper layer handling.
+                    <br>
+                    <strong>Solution:</strong> Replaced the default UIView with a custom UIView subclass (PreviewContainerView) that directly uses AVCaptureVideoPreviewLayer as its backing layer. This ensured the camera preview appeared fullscreen and consistently across devices.
+                    <br><br>
+                </p>
+                <p>
+                    <strong>Problem:</strong> The initial Firebase Firestore security rules didn’t restrict access based on user authentication. This meant that any authenticated user could potentially read or write to any document in the racquets collection.
+                    <br>
+                    <strong>Solution:</strong> Firestore security rules were updated to strictly scope access to each user's own data.
+                    <br><br>
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="project" id="techbuddy">
+        <h2>techbuddy</h2>
+        <p class="description">A support platform for elderly users with chat, ticketing, and article-based help. Built with Spring Boot.</p>
+        <div class="carousel">
+            <div class="carousel-x">
+                <article>
+                    <img src="/images/portfolio/techbuddy-start.png" alt="">
+                    <div class="carousel-content">
+                        <h3>Welcome Screen</h3>
+                        <p>Simple, friendly onboarding interface.</p>
+                    </div>
+                </article>
+                <article>
+                    <img src="/images/portfolio/techbuddy-chat.png" alt="">
+                    <div class="carousel-content">
+                        <h3>Chat Support</h3>
+                        <p>Easy communication with support staff.</p>
+                    </div>
+                </article>
+                <article>
+                    <img src="/images/portfolio/techbuddy-articles.png" alt="">
+                    <div class="carousel-content">
+                        <h3>Help Articles</h3>
+                        <p>Find answers quickly with structured content.</p>
+                    </div>
+                </article>
+                <article>
+                    <img src="/images/portfolio/techbuddy-insights.png" alt="">
+                    <div class="carousel-content">
+                        <h3>Insights</h3>
+                        <p>Track common issues and user questions.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+
+        <h3>Description</h3>
+        <p>techbuddy is a web-based support platform designed for elderly users who need guided digital help. Built as part of a university module, it includes real-time chat, support articles, and ticket-based issue resolution. In a team of 3 students, we developed this application using Spring Boot. My contribution in this project included the markdown based article feature, the administrator insights, the chat feature and the translation feature, as well as the security configurations.</p>
+
+        <div class="tech-stack">
+            <strong>Tech Stack:</strong>
+            <ul>
+                <li>🌐 Frontend: HTML/CSS, Thymeleaf, charts.js</li>
+                <li>🛠 Backend: Java (Spring Boot), REST APIs</li>
+                <li>🧾 Database: MySQL</li>
+                <li>☁️ Hosting: Docker (dockerhub)</li>
+            </ul>
+        </div>
+        <div class="status">
+            <strong>Status:</strong> Academic project only.
+        </div>
+        <div class="read-more-container">
+            <span class="read-more-toggle" onclick="toggleReadMore(this)">Read more</span>
+            <div class="read-more-content">
+                <h3>Challenges & Solutions</h3>
+                <p>
+                    <strong>Problem:</strong> Spring Boot standard custom error handling returns html format. For the REST API there is no json response (just responded with a json of the html error page).
+                    <br>
+                    <strong>Solution:</strong> Implemented a handler, that checks if the api endpoint is pinged before returning the error html file.
+                    <br><br>
+                </p>
+                <p>
+                    <strong>Problem:</strong> Insights on articles were increasing upon refresh of the page.
+                    <br>
+                    <strong>Solution:</strong> Introduced a new Model ArticleView that will be created using the javascript of the view Article Button. This way when the article is refreshed there is no counter that is increased, and we can track the views back with a timestamp, for the insights.
+                    <br><br>
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="project" id="photoshare">
+        <h2>Photo Sharing Platform</h2>
+        <p class="description">Side project using Flask for private photo sharing. No planned release.</p>
+        <div class="carousel">
+            <div class="carousel-x">
+                <article>
+                    <img src="/images/portfolio/photoshare-home.png" alt="">
+                    <div class="carousel-content">
+                        <h3>Home</h3>
+                        <p>Clean, simple landing page with login.</p>
+                    </div>
+                </article>
+                <article>
+                    <img src="/images/portfolio/photoshare-user-management.png" alt="">
+                    <div class="carousel-content">
+                        <h3>User Management</h3>
+                        <p>Manage private access for family and friends.</p>
+                    </div>
+                </article>
+                <article>
+                    <img src="/images/portfolio/photoshare-project.png" alt="">
+                    <div class="carousel-content">
+                        <h3>Project Files</h3>
+                        <p>Store and share project-specific images securely.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+        <div class="tech-stack">
+            <strong>Tech Stack:</strong>
+            <ul>
+                <li>🌐 Frontend: HTML/CSS, bootstrap</li>
+                <li>🛠 Backend: Flask</li>
+            </ul>
+        </div>
+        <h3>Status</h3>
+        <p>This project was just a side project with the sole purpose of learning more about flask and sending vacation photos to a friend. There is no planned release for this web app.</p>
+    </div>
+
+</main>
+
+<dialog id="imgModal">
+    <img id="modalImg" src="" alt="Expanded image">
+</dialog>
+
+<footer>
+    &copy; 2025 André Aigner. All rights reserved.
+</footer>
+
+<script>
+    function toggleReadMore(toggleEl) {
+        const content = toggleEl.nextElementSibling;
+        const isOpen = content.classList.toggle('open');
+        toggleEl.textContent = isOpen ? 'Show less' : 'Read more';
+    }
+</script>
+<script>
+    // Show zoom cursor on carousel images
+    document.querySelectorAll('.carousel img').forEach(img => {
+        img.style.cursor = 'zoom-in';
+    });
+
+    // Open image in dialog on click
+    document.body.addEventListener('click', (e) => {
+        if (e.target.matches('.carousel img')) {
+            const modal = document.getElementById('imgModal');
+            const modalImg = document.getElementById('modalImg');
+            modalImg.src = e.target.src;
+            modal.showModal();
+        }
+    });
+
+    // Close dialog when clicking outside the image
+    document.getElementById('imgModal').addEventListener('click', (e) => {
+        const modal = e.currentTarget;
+        if (e.target !== modal.querySelector('img')) {
+            modal.close();
+        }
+    });
+</script>
+</body>
+</html>
