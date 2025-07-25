@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Andre Aigner | Software Engineer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'bets-red': '#ff4533',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom CSS for animations and effects */
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .project-card {
+            transition: all 0.3s ease;
+        }
+        
+        .skill-pill:hover {
+            transform: scale(1.05);
+        }
+        
+        .skill-pill {
+            transition: all 0.2s ease;
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #3b82f6;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease forwards;
+        }
+        
+        .delay-100 {
+            animation-delay: 0.1s;
+        }
+        
+        .delay-200 {
+            animation-delay: 0.2s;
+        }
+        
+        .delay-300 {
+            animation-delay: 0.3s;
+        }
+        
+        .delay-400 {
+            animation-delay: 0.4s;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm fixed w-full z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <span class="text-xl font-bold text-blue-600">André Aigner</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="nav-link text-gray-700 hover:text-blue-600">Home</a>
+                    <a href="#about" class="nav-link text-gray-700 hover:text-blue-600">About</a>
+                    <a href="#projects" class="nav-link text-gray-700 hover:text-blue-600">Projects</a>
+                    <a href="#contact" class="nav-link text-gray-700 hover:text-blue-600">Contact</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="text-gray-700 hover:text-blue-600">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white pb-4 px-4 shadow-lg">
+            <a href="#home" class="block py-2 text-gray-700 hover:text-blue-600">Home</a>
+            <a href="#about" class="block py-2 text-gray-700 hover:text-blue-600">About</a>
+            <a href="#projects" class="block py-2 text-gray-700 hover:text-blue-600">Projects</a>
+            <a href="#contact" class="block py-2 text-gray-700 hover:text-blue-600">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-24 pb-16 md:pt-32 md:pb-24 bg-gradient-to-r from-blue-50 to-indigo-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="md:flex md:items-center md:justify-between">
+                <div class="md:w-1/2 animate-fade-in">
+                    <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Hi, I'm <span class="text-blue-600">André Aigner</span></h1>
+                    <h2 class="text-2xl md:text-3xl font-semibold text-gray-700 mb-6">Developer</h2>
+                    <p class="text-lg text-gray-600 mb-8">I build whatever comes to my mind.</p>
+                    <div class="flex space-x-4">
+                        <a href="#projects" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition duration-300">View My Work</a>
+                        <a href="#contact" class="border border-blue-600 text-blue-600 hover:bg-blue-50 px-6 py-3 rounded-lg font-medium transition duration-300">Contact Me</a>
+                    </div>
+                </div>
+                <div class="hidden md:block md:w-1/2 animate-fade-in delay-100">
+                    <div class="relative">
+                        <div class="w-64 h-64 bg-blue-200 rounded-full mx-auto overflow-hidden">
+                            <img src="public/images/webprofilesq.webp" class="w-full h-full object-cover object-top">
+                        </div>
+                        <div class="absolute -bottom-2 -right-2 bg-white p-3 rounded-full shadow-lg">
+                            <div class="bg-blue-600 text-white p-3 rounded-full">
+                                <i class="fas fa-code text-2xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12 animate-fade-in">About Me</h2>
+            <div class="md:flex md:items-center md:space-x-12">
+                <div class="md:w-1/3 mb-8 md:mb-0 animate-fade-in delay-100">
+                    <div class="bg-gray-100 p-6 rounded-xl">
+                        <div class="w-full h-64 bg-gray-300 rounded-lg mb-4">
+                            <img src="public/images/webprofile.webp"alt="Portrait" class="w-full h-full object-cover" /> 
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">André Aigner</h3>
+                        <p class="text-gray-600 mb-4">Developer | GenAI Enthusiast</p>
+                        <div class="flex space-x-3">
+                            <a href="https://github.com/a-aigner" class="text-gray-600 hover:text-blue-600"><i class="fab fa-github text-xl"></i></a>
+                            <a href="https://www.linkedin.com/in/andre-aigner" class="text-gray-600 hover:text-blue-600"><i class="fab fa-linkedin text-xl"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-2/3 animate-fade-in delay-200">
+                    <p class="text-lg text-gray-700 mb-6">
+                        I'm a passionate software engineer with 5 years of experience building automatisations and applications. 
+                    </p>
+                    <p class="text-lg text-gray-700 mb-6">
+                        I thrive in collaborative environments and enjoy solving complex problems with elegant and efficient solutions.
+                    </p>
+                    <div class="mb-8">
+                        <h3 class="text-xl font-semibold mb-4">My Skills</h3>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="skill-pill bg-blue-100 text-blue-800 px-4 py-2 rounded-full">JavaScript</span>
+                            <span class="skill-pill bg-blue-100 text-blue-800 px-4 py-2 rounded-full">Python</span>
+                            <span class="skill-pill bg-blue-100 text-blue-800 px-4 py-2 rounded-full">Node.js</span>
+                            <span class="skill-pill bg-blue-100 text-blue-800 px-4 py-2 rounded-full">Swift</span>
+                            <span class="skill-pill bg-blue-100 text-blue-800 px-4 py-2 rounded-full">Java</span>
+                            <span class="skill-pill bg-blue-100 text-blue-800 px-4 py-2 rounded-full">AWS</span>
+                            <span class="skill-pill bg-blue-100 text-blue-800 px-4 py-2 rounded-full">Docker</span>
+                            <span class="skill-pill bg-blue-100 text-blue-800 px-4 py-2 rounded-full">PostgreSQL</span>
+                            <span class="skill-pill bg-blue-100 text-blue-800 px-4 py-2 rounded-full">C#</span>
+                            <span class="skill-pill bg-blue-100 text-blue-800 px-4 py-2 rounded-full">Apache Velocity</span>
+                        </div>
+                    </div>
+                    <a href="/andre-aigner_cv.pdf" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium">
+                        Download Resume
+                        <i class="fas fa-download ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-4 animate-fade-in">My Projects</h2>
+            <p class="text-lg text-gray-600 text-center mb-12 max-w-3xl mx-auto animate-fade-in delay-100">
+                Here are some of my recent projects. Each one was built to solve a specific problem or explore new technologies.
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- mystrings -->
+                <a href="projects/mystrings.html">
+                    <div class="project-card bg-white rounded-xl overflow-hidden shadow-md animate-fade-in delay-200">
+                        <div class="h-48 bg-gradient-to-r from-black to-gray-500 relative">
+                            <div class="absolute top-4 right-4 bg-white text-black px-3 py-1 rounded-full text-sm font-medium">Featured</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">mystrings</h3>
+                            <p class="text-gray-600 mb-4">A premium stringing log and racquet tracking application for tennis players and pro shops.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="text-xs bg-gray-100 px-2 py-1 rounded">Swift</span>
+                                <span class="text-xs bg-gray-100 px-2 py-1 rounded">SwiftUI</span>
+                                <span class="text-xs bg-gray-100 px-2 py-1 rounded">Firebase</span>
+                                <span class="text-xs bg-gray-100 px-2 py-1 rounded">Gemini</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                
+                
+                <!-- bets -->
+                <a href="projects/bets.html">
+                    <div class="project-card bg-white rounded-xl overflow-hidden shadow-md animate-fade-in delay-300">
+                        <div class="h-48 bg-gradient-to-r from-bets-red to-red-400"></div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">bets</h3>
+                            <p class="text-gray-600 mb-4">Social betting app, to turn everything into a bet. Allowes users to start groups and set stakes for bets.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="text-xs bg-gray-100 px-2 py-1 rounded">Swift</span>
+                                <span class="text-xs bg-gray-100 px-2 py-1 rounded">SwiftUI</span>
+                                <span class="text-xs bg-gray-100 px-2 py-1 rounded">Firebase</span>
+                                <span class="text-xs bg-gray-100 px-2 py-1 rounded">Flask</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                
+
+                <!-- velu 
+                <div class="project-card bg-white rounded-xl overflow-hidden shadow-md animate-fade-in delay-300">
+                    <div class="h-48 bg-gradient-to-r from-purple-400 to-pink-500"></div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Velu</h3>
+                        <p class="text-gray-600 mb-4">Sustainability app that helps users track and reduce their carbon footprint with personalized recommendations.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs bg-gray-100 px-2 py-1 rounded">React Native</span>
+                            <span class="text-xs bg-gray-100 px-2 py-1 rounded">Firebase</span>
+                            <span class="text-xs bg-gray-100 px-2 py-1 rounded">Google Maps API</span>
+                        </div>
+                        <div class="flex space-x-3">
+                            <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">Case Study</a>
+                            <a href="#" class="text-gray-600 hover:text-gray-800 font-medium">View Code</a>
+                        </div>
+                    </div>
+                </div>
+                -->
+                
+                <!-- BTC Chain Analyse -->
+                <div class="project-card bg-white rounded-xl overflow-hidden shadow-md animate-fade-in delay-200">
+                    <div class="h-48 bg-gradient-to-r from-yellow-400 to-orange-500"></div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">BTC Chain Analyse</h3>
+                        <p class="text-gray-600 mb-4">Data Science Project that analyses correlations between onchain data and market data of BTC.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs bg-gray-100 px-2 py-1 rounded">Python</span>
+                            <span class="text-xs bg-gray-100 px-2 py-1 rounded">Flask</span>
+                            <span class="text-xs bg-gray-100 px-2 py-1 rounded">Machine Learning</span>
+                        </div>
+                        <div class="flex space-x-3">
+                            <a href="#" class="text-gray-600 hover:text-gray-800 font-medium">View Article</a> <!--TODO Link Github here-->
+                        </div>
+                    </div>
+                </div>
+                
+                <!--techbuddy-->
+                <a href="projects/techbuddy.html">
+                    <div class="project-card bg-white rounded-xl overflow-hidden shadow-md animate-fade-in delay-300">
+                    <div class="h-48 bg-gradient-to-r from-blue-900 to-blue-300"></div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">TechBuddy</h3>
+                        <p class="text-gray-600 mb-4">Platform that shall provide personalized help to people that need technical support.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs bg-gray-100 px-2 py-1 rounded">Spring</span>
+                            <span class="text-xs bg-gray-100 px-2 py-1 rounded">Java</span>
+                            <span class="text-xs bg-gray-100 px-2 py-1 rounded">MySQL</span>
+                            <span class="text-xs bg-gray-100 px-2 py-1 rounded">HTML</span>
+                            <span class="text-xs bg-gray-100 px-2 py-1 rounded">CSS</span>
+                            <span class="text-xs bg-gray-100 px-2 py-1 rounded">JavaScript</span>
+                        </div>
+                        <div class="flex space-x-3">
+                            <a href="https://github.com/a-aigner/techbuddy" class="text-gray-600 hover:text-gray-800 font-medium">View Code</a>
+                        </div>
+                    </div>
+                </div>
+                </a>
+                
+
+                <!-- LoadSim -->
+                <div class="project-card bg-white rounded-xl overflow-hidden shadow-md animate-fade-in delay-400">
+                    <div class="h-48 bg-gradient-to-r from-green-400 to-teal-500"></div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">LoadSim</h3>
+                        <p class="text-gray-600 mb-4">Create realistic load on web applications using parallel Selenium instances that simulate the beahaviour of real users. (Coming soon...)</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs bg-gray-100 px-2 py-1 rounded">Python</span>
+                            <span class="text-xs bg-gray-100 px-2 py-1 rounded">WebSockets</span>
+                            <span class="text-xs bg-gray-100 px-2 py-1 rounded">Selenium</span>
+                            <span class="text-xs bg-gray-100 px-2 py-1 rounded">AWS</span>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                
+                
+                
+                <!-- Project 6
+                <div class="project-card bg-white rounded-xl overflow-hidden shadow-md animate-fade-in delay-400">
+                    <div class="h-48 bg-gradient-to-r from-indigo-400 to-purple-500"></div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Robo</h3>
+                        <p class="text-gray-600 mb-4">Social platform for developers to share projects, find collaborators, and discuss tech.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs bg-gray-100 px-2 py-1 rounded">Next.js</span>
+                            <span class="text-xs bg-gray-100 px-2 py-1 rounded">NestJS</span>
+                            <span class="text-xs bg-gray-100 px-2 py-1 rounded">PostgreSQL</span>
+                            <span class="text-xs bg-gray-100 px-2 py-1 rounded">Redis</span>
+                        </div>
+                        <div class="flex space-x-3">
+                            <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">Case Study</a>
+                            <a href="#" class="text-gray-600 hover:text-gray-800 font-medium">View Code</a>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+            
+            <!--<div class="text-center mt-12 animate-fade-in">
+                <a href="#" class="inline-flex items-center px-6 py-3 border border-blue-600 text-blue-600 hover:bg-blue-50 rounded-lg font-medium transition duration-300">
+                    View All Projects
+                    <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>-->
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-4 animate-fade-in">Get In Touch</h2>
+            <p class="text-lg text-gray-600 text-center mb-12 max-w-3xl mx-auto animate-fade-in delay-100">
+                Have a project in mind or want to discuss potential opportunities? I'd love to hear from you!
+            </p>
+            
+            <div class="md:flex md:space-x-12">
+                <div class="md:w-1/2 animate-fade-in delay-300">
+                    <div class="bg-gray-50 p-8 rounded-xl h-full">
+                        <h3 class="text-xl font-semibold mb-6">Contact Information</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-envelope text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-900">Email</h4>
+                                    <p class="text-gray-600">andreaigner@icloud.com</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-phone-alt text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-900">Phone</h4>
+                                    <p class="text-gray-600">+49 174 6131721</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-map-marker-alt text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-900">Location</h4>
+                                    <p class="text-gray-600">Munich, GER</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-8">
+                            <h4 class="font-medium text-gray-900 mb-4">Connect with me</h4>
+                            <div class="flex space-x-4">
+                                <a href="#" class="bg-gray-200 hover:bg-gray-300 p-3 rounded-full transition duration-300">
+                                    <i class="fab fa-github text-gray-700"></i>
+                                </a>
+                                <a href="#" class="bg-gray-200 hover:bg-gray-300 p-3 rounded-full transition duration-300">
+                                    <i class="fab fa-linkedin-in text-gray-700"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="md:flex md:items-center md:justify-between">
+                <div class="text-center md:text-left mb-4 md:mb-0">
+                    <h3 class="text-xl font-bold">André Aigner</h3>
+                    <p class="text-gray-400">Building products from start to finish.</p>
+                </div>
+                <div class="flex justify-center md:justify-end space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="mt-8 border-t border-gray-800 pt-8 text-center text-gray-400 text-sm">
+                <p>&copy; 2025 André Aigner. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+
+        // Add animation classes as elements come into view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>

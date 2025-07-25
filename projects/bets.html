@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bets - Turn any link into a social bet</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'bets-red': '#ff4533',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9f9f9;
+        }
+        
+        .phone-mockup {
+            position: relative;
+            width: 300px;
+            height: 600px;
+            border-radius: 40px;
+            background: white;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .phone-screen {
+            position: absolute;
+            top: 20px;
+            left: 10px;
+            right: 10px;
+            bottom: 20px;
+            border-radius: 30px;
+            overflow: hidden;
+            background: white;
+        }
+        
+        .share-sheet {
+            animation: slideUp 1.5s ease-in-out infinite alternate;
+        }
+        
+        @keyframes slideUp {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .feature-card {
+            transition: all 0.3s ease;
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 69, 51, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(255, 69, 51, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 69, 51, 0);
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <!-- Navigation -->
+    <nav class="bg-white py-6 px-4 sm:px-12 shadow-sm">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <div class="flex items-center">
+                <div class="w-10 h-10 rounded-full bg-bets-red flex items-center justify-center">
+                    <span class="text-white font-bold text-xl">B</span>
+                </div>
+                <span class="ml-3 text-xl font-bold">Bets</span>
+            </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#features" class="text-gray-600 hover:text-gray-900 font-medium">Features</a>
+                <a href="#how-it-works" class="text-gray-600 hover:text-gray-900 font-medium">How it works</a>
+                <a href="#testimonials" class="text-gray-600 hover:text-gray-900 font-medium">Testimonials</a>
+            </div>
+            <button class="bg-bets-red text-white px-6 py-2 rounded-full font-medium hover:bg-opacity-90 transition">
+                Join Beta
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="py-16 sm:py-24 px-4 sm:px-12">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+            <div>
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight">
+                    Turn any link into a <span class="text-bets-red">social bet</span>
+                </h1>
+                <p class="mt-6 text-xl text-gray-600 max-w-lg">
+                    Challenge your friends instantly with playful bets on tweets, videos, news — anything you can share.
+                </p>
+                <p class="mt-6 text-xl text-gray-600 max-w-lg">
+                    Release in Fall 2025.
+                </p>
+                <div class="mt-8 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                    <button class="bg-bets-red text-white px-8 py-4 rounded-full font-bold hover:bg-opacity-90 transition text-lg pulse">
+                        Get Updates
+                    </button>
+                </div>
+            </div>
+            <div class="flex justify-center">
+                <div class="phone-mockup animate__animated animate__fadeIn">
+                    <img src="images/bets-sample-content.png" alt="Bets App Screenshot" class="w-full h-full object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-16 sm:py-24 px-4 sm:px-12 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center">
+                <h2 class="text-3xl sm:text-4xl font-bold">Turn everything into <span class="text-bets-red">playful competition</span></h2>
+                <p class="mt-4 text-xl text-gray-600 max-w-2xl mx-auto">
+                    Bets makes it ridiculously easy to challenge your friends on anything you find on- and offline.
+                </p>
+            </div>
+            
+            <div class="mt-16 grid md:grid-cols-3 gap-8">
+                <div class="feature-card bg-white p-8 rounded-2xl shadow-md border border-gray-100">
+                    <div class="w-14 h-14 rounded-full bg-bets-red bg-opacity-10 flex items-center justify-center">
+                        <svg class="w-6 h-6 text-bets-red" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="mt-6 text-xl font-bold">Share from anywhere</h3>
+                    <p class="mt-3 text-gray-600">
+                        Start a bet directly from Safari, Twitter, Instagram, or any app with iOS sharing.
+                    </p>
+                </div>
+                
+                <div class="feature-card bg-white p-8 rounded-2xl shadow-md border border-gray-100">
+                    <div class="w-14 h-14 rounded-full bg-bets-red bg-opacity-10 flex items-center justify-center">
+                        <svg class="w-6 h-6 text-bets-red" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+                        </svg>
+                    </div>
+                    <h3 class="mt-6 text-xl font-bold">Creative stakes</h3>
+                    <p class="mt-3 text-gray-600">
+                        "Loser buys lunch" or "Winner picks the movie" — make the stakes as fun as the bet.
+                    </p>
+                </div>
+                
+                <div class="feature-card bg-white p-8 rounded-2xl shadow-md border border-gray-100">
+                    <div class="w-14 h-14 rounded-full bg-bets-red bg-opacity-10 flex items-center justify-center">
+                        <svg class="w-6 h-6 text-bets-red" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="mt-6 text-xl font-bold">Group dynamics</h3>
+                    <p class="mt-3 text-gray-600">
+                        Challenge your whole group chat or just a few friends. Watch the banter unfold.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="py-16 sm:py-24 px-4 sm:px-12 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center">
+                <h2 class="text-3xl sm:text-4xl font-bold">How it works</h2>
+                <p class="mt-4 text-xl text-gray-600 max-w-2xl mx-auto">
+                    Creating a bet takes seconds. Here's the magic:
+                </p>
+            </div>
+            
+            <div class="mt-16 grid md:grid-cols-3 gap-8">
+                <div class="flex flex-col items-center text-center">
+                    <div class="relative">
+                        <div class="w-20 h-20 rounded-full bg-bets-red text-white flex items-center justify-center text-2xl font-bold">
+                            1
+                        </div>
+                        <div class="absolute -right-10 top-1/2 transform -translate-y-1/2 hidden md:block">
+                            <svg class="w-8 h-8 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 class="mt-6 text-xl font-bold">Share content</h3>
+                    <p class="mt-3 text-gray-600">
+                        Tap the share button in any app and select Bets from your Share Sheet.
+                    </p>
+                    <!--<div class="mt-6 w-48 h-96 bg-white rounded-xl shadow-lg overflow-hidden">
+                        <img src="https://placehold.co/192x384/f3f4f6/9ca3af/png?text=Share+Sheet" alt="Share Sheet" class="w-full h-full object-cover share-sheet">
+                    </div>-->
+                </div>
+                
+                <div class="flex flex-col items-center text-center">
+                    <div class="relative">
+                        <div class="w-20 h-20 rounded-full bg-bets-red text-white flex items-center justify-center text-2xl font-bold">
+                            2
+                        </div>
+                        <div class="absolute -right-10 top-1/2 transform -translate-y-1/2 hidden md:block">
+                            <svg class="w-8 h-8 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 class="mt-6 text-xl font-bold">Add your bet</h3>
+                    <p class="mt-3 text-gray-600">
+                        Describe what you're betting on and set the stakes. Get creative!
+                    </p>
+                    <!--<div class="mt-6 w-48 h-96 bg-white rounded-xl shadow-lg overflow-hidden">
+                        <img src="https://placehold.co/192x384/f3f4f6/9ca3af/png?text=Bet+Form" alt="Bet Form" class="w-full h-full object-cover">
+                    </div>-->
+                </div>
+                
+                <div class="flex flex-col items-center text-center">
+                    <div class="w-20 h-20 rounded-full bg-bets-red text-white flex items-center justify-center text-2xl font-bold">
+                        3
+                    </div>
+                    <h3 class="mt-6 text-xl font-bold">Send to group</h3>
+                    <p class="mt-3 text-gray-600">
+                        Pick your group and watch the bets roll in. May the best friend win.
+                    </p>
+                    <!--<div class="mt-6 w-48 h-96 bg-white rounded-xl shadow-lg overflow-hidden">
+                        <img src="https://placehold.co/192x384/f3f4f6/9ca3af/png?text=Group+Chat" alt="Group Chat" class="w-full h-full object-cover">
+                    </div>-->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section 
+    <section class="py-16 sm:py-24 px-4 sm:px-12 bg-white">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+            <div>
+                <h2 class="text-3xl sm:text-4xl font-bold">See it in action</h2>
+                <p class="mt-4 text-xl text-gray-600">
+                    Watch how Bets transforms your everyday browsing into playful competition with friends.
+                </p>
+                <div class="mt-8">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 rounded-full bg-bets-red text-white flex items-center justify-center">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="font-bold">Quick demo</h3>
+                            <p class="text-gray-600 text-sm">1 minute video</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-gray-100 rounded-2xl overflow-hidden shadow-xl">
+                <div class="aspect-w-16 aspect-h-9">
+                    <img src="https://placehold.co/800x450/f3f4f6/9ca3af/png?text=Video+Demo" alt="Bets App Demo" class="w-full h-full object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+    -->
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-16 sm:py-24 px-4 sm:px-12 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center">
+                <h2 class="text-3xl sm:text-4xl font-bold">What early users say</h2>
+                <p class="mt-4 text-xl text-gray-600 max-w-2xl mx-auto">
+                    Don't just take our word for it. Here's what our beta testers think.
+                </p>
+            </div>
+            
+            <div class="mt-12 grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full bg-gray-200"></div>
+                        <div class="ml-4">
+                            <h4 class="font-bold">Alex K.</h4>
+                            <p class="text-gray-500 text-sm">Beta Tester</p>
+                        </div>
+                    </div>
+                    <p class="mt-4 text-gray-700 italic">
+                        "I've never had so much fun being wrong. My group chat is now 80% bets and 20% everything else."
+                    </p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full bg-gray-200"></div>
+                        <div class="ml-4">
+                            <h4 class="font-bold">Jamie L.</h4>
+                            <p class="text-gray-500 text-sm">Beta Tester</p>
+                        </div>
+                    </div>
+                    <p class="mt-4 text-gray-700 italic">
+                        "The share extension is genius. I can turn any tweet into a bet in seconds. My friends hate/love me now."
+                    </p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full bg-gray-200"></div>
+                        <div class="ml-4">
+                            <h4 class="font-bold">Taylor M.</h4>
+                            <p class="text-gray-500 text-sm">Beta Tester</p>
+                        </div>
+                    </div>
+                    <p class="mt-4 text-gray-700 italic">
+                        "Our group has bet on everything from sports to politics to whether our friend would actually go to the gym."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 sm:py-24 px-4 sm:px-12 bg-bets-red text-white">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl sm:text-4xl font-bold">Ready to turn your browsing into bets?</h2>
+            <p class="mt-4 text-xl opacity-90 max-w-2xl mx-auto">
+                Join our beta and be among the first to start betting with friends.
+            </p>
+            <div class="mt-8 max-w-md mx-auto">
+                <form class="flex flex-col sm:flex-row gap-4">
+                    <input type="email" placeholder="Enter your email" class="flex-grow px-6 py-4 rounded-full text-gray-900 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-bets-red">
+                    <button type="submit" class="bg-white text-bets-red px-8 py-4 rounded-full font-bold hover:bg-opacity-90 transition text-lg whitespace-nowrap">
+                        Join Beta
+                    </button>
+                </form>
+                <p class="mt-4 text-sm opacity-80">
+                    We'll never spam you. Unsubscribe anytime.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-4 sm:px-12 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-12">
+                <div>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 rounded-full bg-bets-red flex items-center justify-center">
+                            <span class="text-white font-bold text-xl">B</span>
+                        </div>
+                        <span class="ml-3 text-xl font-bold">Bets</span>
+                    </div>
+                    <p class="mt-4 text-gray-600">
+                        Turn any link into a social bet. Challenge your friends on anything you can share.
+                    </p>
+                    <div class="mt-6 flex space-x-4">
+                        <a href="#" class="text-gray-500 hover:text-gray-700">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd"></path>
+                            </svg>
+                        </a>
+                       <a href="https://x.com/yourusername" target="_blank" rel="noopener" class="text-gray-500 hover:text-gray-700 transition duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1227" class="w-6 h-6 fill-current" aria-hidden="true">
+                                <path d="M742.7 616.7 1199.7 128H1096L700 582 370.3 128H0l478.7 690.3L0 1099h103.7l419-474.3L833 1099h370L742.7 616.7zM575.7 659.3l48-54.3 386.6 538H788.7L575.7 659.3zM112.7 199.7h234.6l722.3 995.3H835L112.7 199.7z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-500 hover:text-gray-700">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold">Product</h3>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="#" class="text-gray-600 hover:text-gray-900">Features</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-gray-900">How it works</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-gray-900">Beta</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold">Company</h3>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="../index.html" class="text-gray-600 hover:text-gray-900">About</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-gray-900">Blog</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-gray-900">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold">Legal</h3>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="#" class="text-gray-600 hover:text-gray-900">Privacy</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-gray-900">Terms</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-gray-900">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="mt-12 pt-8 border-t border-gray-200 text-center text-gray-500">
+                <p>© 2025 Bets App. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple animation for demo purposes
+        document.addEventListener('DOMContentLoaded', function() {
+            const featureCards = document.querySelectorAll('.feature-card');
+            
+            featureCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                    this.style.boxShadow = '0 15px 30px rgba(0,0,0,0.1)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = '';
+                    this.style.boxShadow = '';
+                });
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
